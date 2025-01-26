@@ -1,10 +1,20 @@
+import clsx from "clsx";
+import styles from "./FriendListItem.module.css";
+
 const FriendListItem = ({ avatar, name, isOnline }) => {
   return (
-    <div className={`friend-item ${isOnline ? "online" : "offline"}`}>
+    <li className={styles.item}>
       <img src={avatar} alt={name} width="50" />
       <p>{name}</p>
-      <span>{isOnline ? "Online" : "Offline"}</span>
-    </div>
+      <span
+        className={clsx(styles.status, {
+          [styles.online]: isOnline,
+          [styles.offline]: !isOnline,
+        })}
+      >
+        {isOnline ? "Online" : "Offline"}
+      </span>
+    </li>
   );
 };
 
